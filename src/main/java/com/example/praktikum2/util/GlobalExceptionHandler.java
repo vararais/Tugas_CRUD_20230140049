@@ -17,3 +17,12 @@ public class GlobalExceptionHandler {
                 "message", exception.getMessage()
         ));
     }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<Map<String, Object>> handleRuntimeException(RuntimeException exception) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of(
+                "status", "error",
+                "message", exception.getMessage()
+        ));
+    }
+}
