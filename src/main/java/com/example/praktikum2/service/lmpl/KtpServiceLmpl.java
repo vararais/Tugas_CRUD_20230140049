@@ -44,3 +44,20 @@ public class KtpServiceImpl implements KtpService {
         ktpRepository.save(ktp);
         return KtpMapper.MAPPER.toKtpDto(ktp);
     }
+
+    @Override
+    public List<KtpDto> getAllKtp() {
+        List<Ktp> ktpList = ktpRepository.findAll();
+        List<KtpDto> ktpDtos = new ArrayList<>();
+        for (Ktp ktp : ktpList) {
+            ktpDtos.add(KtpMapper.MAPPER.toKtpDto(ktp));
+        }
+        return ktpDtos;
+    }
+
+    @Override
+    public KtpDto getKtpById(Integer id) {
+        Ktp ktp = ktpRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Data KTP dengan ID " + id + " tidak ditemukan!"));
+        return KtpMapper.MAPPER.toKtpDto(ktp);
+    }
