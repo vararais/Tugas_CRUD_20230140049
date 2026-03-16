@@ -93,3 +93,30 @@ Base URL: `http://localhost:8081`
 ```
 
 * **Note : Semua ini jika respon server adalah SUCCESS**
+
+---
+
+Foto FRONTEND
+
+* **Awal** 
+![img.png](img.png)
+
+* **Post / Add Data**
+![img_1.png](img_1.png)
+
+* **Put / Update Data**
+![img_2.png](img_2.png)
+![img_3.png](img_3.png)
+
+* **Delete / Hapus Data**
+![img_4.png](img_4.png)
+![img_5.png](img_5.png)
+
+---
+
+Cara run Project
+
+* **Buat database ktp_database di MySql**
+* **Atur Kredensial di file env**
+* **Run App di dalam Praktikum2Application**
+* **Buka Halaman pada http://localhost:8081 di browser**
