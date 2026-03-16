@@ -15,3 +15,10 @@ public class KtpAddRequest {
 
     @NotBlank(message = "Alamat tidak boleh kosong")
     private String alamat;
+
+    @NotNull(message = "Tanggal lahir tidak boleh kosong")
+    private LocalDate tanggalLahir;
+
+    @NotBlank(message = "Jenis kelamin tidak boleh kosong")
+    private String jenisKelamin;
+}
