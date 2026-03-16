@@ -30,3 +30,24 @@ public class KtpController {
                 "data", result
         ));
     }
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Map<String, Object>> getAllKtp() {
+        List<KtpDto> result = ktpService.getAllKtp();
+        return ResponseEntity.status(HttpStatus.OK).body(Map.of(
+                "status", "success",
+                "data", result
+        ));
+    }
+
+    @GetMapping(
+            path = "/{id}",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<Map<String, Object>> getKtpById(@PathVariable("id") Integer id) {
+        KtpDto result = ktpService.getKtpById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(Map.of(
+                "status", "success",
+                "data", result
+        ));
+    }
