@@ -61,3 +61,33 @@ public class KtpServiceImpl implements KtpService {
                 .orElseThrow(() -> new RuntimeException("Data KTP dengan ID " + id + " tidak ditemukan!"));
         return KtpMapper.MAPPER.toKtpDto(ktp);
     }
+
+    @Override
+    public KtpDto updateKtp(Integer id, KtpAddRequest request) {
+        validationUtil.validate(request);
+
+        Ktp existingKtp = ktpRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Data KTP dengan ID " + id + " tidak ditemukan!"));
+
+        Optional<Ktp> checkKtp = ktpRepository.findByNomorKtp(request.getNomorKtp());
+        if (checkKtp.isPresent() && !checkKtp.get().getId().equals(id)) {
+            throw new RuntimeException("Gagal: Nomor KTP " + request.getNomorKtp() + " sudah dipakai data lain!");
+        }
+
+        existingKtp.setNomorKtp(request.getNomorKtp());
+        existingKtp.setNamaLengkap(request.getNamaLengkap());
+        existingKtp.setAlamat(request.getAlamat());
+        existingKtp.setTanggalLahir(request.getTanggalLahir());
+        existingKtp.setJenisKelamin(request.getJenisKelamin());
+
+        ktpRepository.save(existingKtp);
+        return KtpMapper.MAPPER.toKtpDto(existingKtp);
+    }
+
+    @Override
+    public void deleteKtp(Integer id) {
+        Ktp ktp = ktpRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Data KTP dengan ID " + id + " tidak ditemukan!"));
+        ktpRepository.delete(ktp);
+    }
+}
